@@ -1,0 +1,241 @@
+# Database Fundamentals
+
+## 1. Overview of Database
+<span style="font-family: Times New Roman;">
+
+#### What is Database?
+  - A Database is a organised collection of data that can be stored, managed, retrieved, and manipulated efficiently.
+
+```python
+  Ex: 
+      ID       Name      Dept
+      101      Rahul     CSE
+      102      John      ECE
+  ```
+ - Instead of searching through thousands of files manually, the database allows us to retrieval of records efficiently.
+
+ => The data is stored electronically and managed using Database Manangement System (DBMS).
+
+```python
+RealWorld Example:
+
+Banking System
+- Customer details
+- Account balances
+- Transactions
+
+E-Commerce
+- Products
+- Orders
+- Customers
+- Payments
+
+Social Media
+- User profiles
+- Posts
+- Likes
+- Comments
+
+Hospital
+- Patient records
+- Doctors
+- Appointments
+- Prescriptions
+```
+
+#### Why Databases are needed?
+
+- Before database was introduce data was stored in files. Problem arose when the data became large.
+
+##### Advantages of using Databases:
+- Data Redundancy (Same data stored in multiple times).
+- Data Inconsistency (Different versions of same information exists).
+- Data Security (Authentication, Authorization, Role-based access).
+- Fast Retrival (Search manually through files).
+- Concurrent Access (Multiple users can access data simultaneously).
+- Backup and Recovery (Backups, Recovery, crash recovery).
+- Data Integrity (Ensures Data remains accurate).
+
+#### Evolution of Databases
+Stage 1: File Based Systems (1950-1960)
+
+    Data stored as tree structure
+
+        Data stored: Text Files, Flat files
+        Problems: Redundancy, Incosistency
+
+
+Stage 2: Hierarchical Databases (1960s)      
+
+    Data stored as tree structure
+
+       Company
+        |
+        |-- Department
+                |
+                |-- Employee
+
+        pros:
+        - Fast traversal
+
+        Cons:
+        - One parent only
+        - Rigid structure
+
+        Ex: IBM IMS
+
+Stage 3: Network Databases (1970s)
+
+    Data stored in graphs
+    
+             Employee
+             /     \
+        project   Department
+
+        Advantage:
+        Multiple relationships
+
+        Disadvantage:
+        Complex Design
+
+Stage 4: Relational Databases (1970-present)
+
+    Data stored in tables
+
+    Students:
+
+    | ID | Name  |
+    | -- | ----- |
+    | 1  | Rahul |
+
+    Courses:
+
+    | CourseID | Course |
+    | -------- | ------ |
+    | 101      | SQL    |
+
+    Advantage:
+            Simple
+            Flexible
+            SQL support
+    
+    Products:
+            Mysql
+            PostgreSQL
+
+Stage 5: Object-Oriented Databases (1980s)
+
+    => Stores objects directly
+
+    suitable for:
+                 CAD
+                 Multimedia
+
+Stage 6: NoSQL Databases (2000s)
+
+    Handles:
+           Big data
+           High Scalability
+           Massive web applications
+    Ex: MongoDB
+        Redis
+        Cassandra
+
+Stage 7: Cloud Databases (2010-present)
+
+    Managed by cloud providers.
+
+    Ex: Amazon RDS
+        Azure SQL Databases
+        Google Cloud SQL
+
+    Benifits:
+            Auto Scaling
+            High Availability
+            Global access
+
+#### Types Of Databases
+#### 1. Relational Database (RDBMS)
+- It is a collection of data in the form of two-dimensional tables.
+
+        Ex: Customers
+
+            Customer ID        Name
+            1                  Rahul
+            ---------------------------------
+            Orders
+
+            OrderID             CustomerID
+            101                 1
+
+            "Relationship created using keys".
+#### 2. Hierarchical Database
+- Tree Based structure.
+
+        Company
+        |
+        Department
+        |
+        Employee
+#### 3. Network Database
+- Graph based structure. Works with many-to-many relationships
+
+        Ex: Employee works on many projects.
+            Projects has many employees.
+#### 4. Object-Oriented Database
+- Stores objects instead of rows.
+
+        class Student {
+        int id;
+        String name;
+        }
+#### 5. NoSQL Database
+- Store data differently than relational tables. NoSQL databases come in a variety of types based on their data model. The main types are document, key-value, wide-column, and graph. They provide flexible schemas and scale easily with large amounts of big data and high user loads.
+
+- Designed for Scalability
+
+        Types:
+        1. Document Database: JSON document.
+
+                {
+                "id":1,
+                "name":"Rahul"
+                }
+
+            EX: MongoDB, CouchDB
+
+        2. Key-Value Database
+
+            key = user123
+            value = Rahul
+
+            Ex: Redis, Amazon DynamoDB
+        
+        3. Column-Family Database
+
+            >> Stores data by columns
+
+            Ex: Apache Cassandra
+                Apache Hbase
+        
+        4. Graph Database
+             
+             >> Stores nodes and relationships.
+
+             Ex: Person -> Friend -> Person
+
+             Neo4j, Amazon Neptune
+
+##### Quick Question for Understanding:
+    1. What is a database?
+    2. Why do we need DBMS?
+    3. Difference between DBMS and file system?
+    4. What are the limitations of file systems?
+    5. Explain the evolution of databases.
+    6. What is RDBMS?
+    7. What is NoSQL?
+    8. Types of NoSQL databases?
+    9. Difference between SQL and NoSQL?
+    10. When would you choose NoSQL over SQL?
+
+</span>
