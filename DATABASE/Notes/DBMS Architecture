@@ -1,0 +1,242 @@
+### 1. Database Architecture
+<span style="font-family: Times New Roman;">
+
+#### What is DBMS Architecture?
+- A DBMS sits between user/application and the physical database.
+
+                User/Application
+                    |
+                    V
+                   DBMS
+                    |
+                    V
+                Database
+
+- They are 3 level Architecture
+
+            External Level (User View)
+                    |
+            Conceptual Level (Logical View)
+                    |
+            Internal Level (Physical Storage)
+
+    => Proposed by ANSI/SPARC.
+
+    - This layered approach provides a systamatic way to manage data abstraction, enhances data independence, and allows different users to interact with the system without needing to understand the complexity of how the data is stored or structured.
+
+#### 1. External Level:  [Top Layer]
+- The highest level of data abstraction and is closest to the end users.
+- Custom Views.
+- Each user only sees what they need to know, enhancing data security and simiplicity.
+- This level hides the complexity of the underlying data and only shows what relevant to user.
+
+      Ex: HR sees employee data.
+          Finance sees Salary data.
+
+#### 2. Conceptual Level: [Middle Layer]
+- This represents the logical structure of the entire database.
+- It represents the structure of a database. In an employee database, it describes columns or attributes of the table.
+- The conceptual schema is represented by Entity-relationship Model [ER Model]. which uses symbols to represent data, as like ER Diagram.
+
+        Contains: Tables
+                  Relationships
+                  Constraints
+
+#### 3. Internal Level: [Last layer]
+- This is also know as Physical storage, this will decide where all the data is kept and arranged, where data to be stored and how it should be stored.
+
+##### Key Features:
+- It determines how data is stored in databases.
+- It creates Indexes to the data so the records can be accessed quickly.
+- It compresses the data in such a form that data quality is not lost and uses less space.
+- It divides large tables into smaller partitions for better management and performance.
+
+##### Advantages of three level DBMS Architecture:
+- Data Independence 
+    - [Changes in physical layer/logical schema doesn't affect user views and applications]
+
+- Enhanced security
+    - [Users access only the relevant data, reducing exposure of the data]
+
+- Flexibility
+    - [Multiple customized views can be created for different users without changing underlying schema]
+
+- Simplified Design and Maintenance
+    - [Logical and physical layer design are seperated, making system easier to manage and evolve]
+
+- Scalability
+    - [Structural changes at the internal level(like storage upgrades) doesn't disrupt the overall system]
+
+##### Disadvantages of Three Level DBMS Architecture:
+- Increased Complexity
+    - Designing and managing three layers adds architectural complexity.
+- Performance Overhead
+    - Multiple abstractions layers may introduce latency in data retrival.
+- Higher Development cost
+    - More time and resources are needed to implement and maintain all three layers.
+- Not ideal for simple applications
+    - For small scale systems, this architecture may be excessive and unnecessary.
+
+### 2. DBMS Components
+Core Components:
+
+        DBMS
+        |
+        ├── Query Processor
+        ├── Storage Manager
+        ├── Transaction Manager
+        ├── Recovery Manager
+        ├── Authorization Manager
+        └── Data Dictionary
+
+1. Query Processor: 
+    Converts commands into execution steps.
+
+    Ex: Select * from Emp;
+
+2. Storage Manager:
+    Handles: disk access, data pages, buffer management.
+
+3. Transactional Manager:
+    Ensures data validates through ACID Properties.
+
+4. Recovery Manager:
+    Handles: Crash recovery, roll backs.
+
+5. Data Dictionary:
+    - Metadata repository. 
+    - This is also known as system catalog which stored as a specialized, read-only set of internal tables and views that contains meta data(Data about data)
+
+            Ex: Table Name
+                Columns
+                Constraints
+                Indexes
+                users
+                Permissions
+
+### 3. Data Models
+- A data model defines how data is represented.
+
+3.1. Hierarchical model
+
+        Company
+        |
+        Department
+        |
+        Employee
+
+3.2. Network model
+
+        Employee
+        /    \
+        Project Department
+
+3.3. Relational model
+
+        Employee
+        ---------
+        ID
+        Name
+        Salary
+
+3.4. Object Oriented model
+stores objects
+
+    Employee emp
+
+3.5. Document model: JSON
+
+    {
+    "id":1,
+    "name":"Rahul"
+    }
+
+3.6. Graph Model
+
+    User ---- Friend ---- User
+    most used in social media.
+
+### 4. Entity-Relationship[ER] Modeling
+- 
+- Used before database creation
+##### Entity Type:
+- The description or classification of a particular group of members in a set of data.
+
+##### Entity: Real world object
+- The reference to the member itslef. Think of an object. Represented a  rectangles.
+
+      Ex: Student
+          Employee
+          Product
+
+##### Attributes: Properties
+- Characterstics of entities. Represented by Ovals
+
+        Student:
+        ---------
+        ID
+        Name
+        Age
+
+##### Relationships
+- A description on how two entities interact with each other in the database. represented as diamonds or labelled lines.
+
+        Student
+        |
+        Enrolls
+        |
+        Courses
+
+##### Cardinality
+- It defines how many entities participate in a relationship.
+
+    - ONE-TO-ONE (1:1): 
+        One Entity instance relates to exactly one other.
+        
+            Person <=> Passport
+
+    - ONE-TO-MANY (1:N):
+        One entity instance relates to multiple others.
+
+             Dept -> Employees
+- MANY-TO-MANY (M:N)
+        Multiple entity instances relates to multiple others.
+
+        Students <=> Courses
+
+### 5. Keys
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</span>
