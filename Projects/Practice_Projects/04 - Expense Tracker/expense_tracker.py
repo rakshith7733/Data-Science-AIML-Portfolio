@@ -1,27 +1,25 @@
-
-# # 1. Initialize once (empty)
-# records = defaultdict(list)
-
-# # 2. Directly append new categories without defining them first
-# records["Food"].append({"amount": 500, "date": "2026-07-18"}) 
-# # "Food" key is created automatically here
-
-# records["Travel"].append({"amount": 200, "date": "2026-07-19"}) 
-# # "Travel" key is created automatically here
-
-# # 3. Append to existing categories
-# records["Food"].append({"amount": 50, "date": "2026-07-20"})
-
-# print(dict(records))
-# # Output: {'Food': [{...}, {...}], 'Travel': [{...}]}
-#------------------------------------------------------------------------------------------------
-
+import json
 from collections import defaultdict
 
 #Database
 # Initialize the main database once (outside the function ideally, but here for context)
-# This dictionary will hold lists of records for each category
-expenses = defaultdict(list)
+# This dictionary will hold lists of records for each category.
+
+try:
+    with open('data.json','r') as f:
+        data = json.load(f)
+        expenses = defaultdict(list, {k: list(v) for k, v in data.items()})
+
+except FileNotFoundError:
+    expenses = defaultdict(list)
+
+
+#Save data into json file.
+def save_data():
+    "This function saves the data added in expense to json file."
+
+    with open("data.json",'w') as f:
+        json.dump(dict(expenses),f)
 
 
 # Add Expenses
@@ -67,35 +65,143 @@ def add_expense():
 
         expenses[category].append(record)
 
-        print("Expense Saved Successfully..")
+    #Saving the data to json file for further retreival.
+    save_data()
 
-
-    print("Summary:\n")
-    for item in expenses[category]:
-        print(f"{item['amount']},{item['date']}")
-        
-
+    print("Expense Saved Successfully....")
 
 
 # View Expenses
 def view_expense():
-    pass
+    "This function will result the display of the expenses stored."
+
+    exp_check = input("Enter the Category Expenses you need to display: ").strip()
+
+    if not exp_check:
+        print("Enter correct category")
+        return
+    
+    if exp_check in expenses:
+        print("="*50)
+        print(f"Expense Dashboard for {exp_check}")
+        print("="*50)
+
+        # check step by step for the category and pull respective category items and prints.
+        for item in expenses[exp_check]:
+            print(f"Category: ",item)
+            print(f"Amount: {item['amount']}")
+            print(f"Date: {item['date']}")
+            print("~"*30)
+    else:
+        print(f"Category {exp_check} doesn't exist in record. Please choose the available Expenses {list(expenses.keys())}")
+    
+      
 
 # Delete Expense
 def delete_expense():
-    pass
+    "This function will delete the record of respective category bill/amount."
+
+    #we will take the category item amount to be deleted.
+    category = input("Enter the category: ").strip()
+
+
+    #handle any case senstitivity values.
+    found_key = next((k for k in expenses if k.lower() == category.lower()), None)
+    
+    if not category:
+        print("Please enter a valid category")
+        return
+
+    print("Available Category's:\n")
+    for i,record in enumerate(expenses[found_key]):
+        print(f"{i} Amount: {record['amount']},Date: {record['date']}")
+
+
+    try:
+        target_amount = int(input("Enter the amount: "))
+        target_date = input("Enter the respective amount date: ")
+
+        for i, record in enumerate(expenses[found_key]):
+            if record['amount'] == target_amount and record['date'] == target_date:
+                del expenses[found_key][i] #deleting the record by index of amount and date combination.
+                print("Data deleted Successfully..")
+
+                #Save to the file
+                save_data()
+                return
+
+        print("No matching record found with matching record of amount and date.")
+
+    except ValueError:
+        print("Enter valid amount.")
+        return
 
 # Overall Category Summary
 def category_summary():
-    pass
+    "This function will calculate of category wise count, total amount spent" #food 1200 count:4, Grocery 1000 count 3
+
+    #we will take the category item amount listed.
+    category = input("Enter the category: ").strip()
+    
+    #handle any case senstitivity values.
+    found_key = next((k for k in expenses if k.lower() == category.lower()), None)
+
+    if not found_key:
+        print(f"Expense record not found for {found_key}.")
+        print(f"Expense record for {list(expenses.keys())}")
+        return
+    
+    else:
+        #We are taking this variable if the category is found the database, so based on the data we will do rest of the calculations.
+        records = expenses[found_key]
+
+        if not records:
+            print(f"Expenses record for {found_key}present but no data available")
+        else:
+            total_amount = sum(record['amount'] for record in records)     #Total sum of the records for category.
+            total_count = len(records)                                     #Total count of the records
+            dates = [record['date'] for record in records]                 #Taking the date of the category later we will fetch start and end dates.
+
+
+            print(f"=========Category Summary: {found_key}============")
+            print(f"Total Amount: ${total_amount}")
+            print(f"Total Number of Transactions: {total_count}")
+            print(f"Average Transactions: ${total_amount/total_count:.2f}")
+
+            if dates:
+                print(f"Date Range: {min(dates)} to {max(dates)}")
+            else:
+                print("Date Range: N/A") 
+    input("\nPress Enter to return to menu...")   
 
 # Monthly Expense Total
 def monthly_total():
-    pass
+    target_month = input("Enter the Month: ") #08
+    target_year = input("Enter the Year: ")   #2026
 
+    total_spend = 0
+    count = 0
 
+    for category, records in expenses.items():
+        for record in records:
 
+            parts = record['date'].split('-')
+            if len(parts) == 3:
+                day, month, year = parts
 
+                if month == target_month and year == target_year:
+                    total_spend += record['amount']
+                    count += 1
+    if count == 0:
+        print(f"No Expenses found for {target_month}-{target_year}.")
+    else:
+        print("~"*50)
+        print(f"Monthly Expense for {target_month}-{target_year}")
+        print(f"Total Amount Spend: ${total_spend}")
+        print((f"Total Transactions: {count}."))
+        print("~"*50)
+
+    input("\nPress Enter to return to menu...")
 
 
 def main():
@@ -106,23 +212,23 @@ def main():
         print("Welcome to Expense Tracker!")
         print("="*50)
 
-        print("Menu:\n1. Add Expense \n2. View Expense \n3. Delete Expenses \n4. Category Summary \n5. Save to File \n6. Exit")
+        print("Menu:\n1. Add Expense \n2. View Expense \n3. Delete Expenses \n4. Category Summary \n5. Monthly Total \n6. Exit\n")
 
         try:
             user_choice = int(input("Enter your choice: "))
 
             if user_choice == 1:
-                add_expense()
+                add_expense() #done
             elif user_choice == 2:
-                view_expense()
+                view_expense() #done
             elif user_choice == 3:
-                delete_expense()
+                delete_expense() #done
             elif user_choice == 4:
-                category_summary()
+                category_summary() #done
             elif user_choice == 5:
-                monthly_total()
+                monthly_total() #done
             elif user_choice == 6:
-                print("Thank you.")
+                print("Thank you.") #done
                 break
 
         except ValueError:
