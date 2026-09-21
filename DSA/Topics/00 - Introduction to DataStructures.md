@@ -73,93 +73,138 @@ Ex: Sets, Dictionary, Graphs, Tree
 
 1. Searching Algorithms: Used to find an element in a collection of data.
 
-  1.1. Linear Search:
-      - Checks each element one by one
-      - works on unsorted data
+        1.1. Linear Search:
+            - Checks each element one by one
+            - works on unsorted data
 
-  1.2. Binary Search:
-      - Works only on sorted data
-      - Repeatedly divides the search space into half.
+        1.2. Binary Search:
+            - Works only on sorted data
+            - Repeatedly divides the search space into half.
       
 2. Sorting Algorithms: Used to arrange data in a specific order.
 
-  2.1. Bubble Sort:
-      - Compares adjacent elements and swaps them
-      - Easy to understand but slow
-  2.2. Selection Sort:
-      - Repeatedly selects minimum elements
-  2.3. Insertion Sort:
-      - Inserts elements into their correct position
-  2.4. Merge Sort:
-      - Divide and conquer algorithm
-      - Efficient and stable
-  2.5. Heap Sort:
-      - Uses Heap data structures
-  2.6. Quick Sort:
-      - Uses pivot element
-      - very fast in practice
+        2.1. Bubble Sort:
+            - Compares adjacent elements and swaps them
+            - Easy to understand but slow
+        2.2. Selection Sort:
+            - Repeatedly selects minimum elements
+        2.3. Insertion Sort:
+            - Inserts elements into their correct position
+        2.4. Merge Sort:
+            - Divide and conquer algorithm
+            - Efficient and stable
+        2.5. Heap Sort:
+            - Uses Heap data structures
+        2.6. Quick Sort:
+            - Uses pivot element
+            - very fast in practice
 
 3. Divide and Conquer Algorithms: Break a large problem into smaller sub-problem.
 
-Ex: Merge Sort, Quick Sort, Binary search
+        Ex: Merge Sort, Quick Sort, Binary search
 
-Workflow: Divde >> solve >> combine
+        Workflow: Divde >> solve >> combine
 
 4. Recursion: An Algorithm that calls itself until a base condition is met.
 
-Ex: Factorial, Fibonacci series, Tree Traversal
+>> Ex: Factorial, Fibonacci series, Tree Traversal
 
 5. Dynamic Programming (DP): Used when the same sub-problem occurs multiple times.
 
-Idea: Store previously calculated results.
-      Avoid repeated calculations
+        Idea: Store previously calculated results.
+            Avoid repeated calculations
 
-Ex: Fibonacci
-    Knapsack problem
-    Longest common subsequence
+        Ex: Fibonacci
+            Knapsack problem
+            Longest common subsequence
 
-Real world usecases:
-- Route Optimization
-- Resource planning
-- stock market analysis
+        Real world usecases:
+        - Route Optimization
+        - Resource planning
+        - stock market analysis
 
 6. Greedy Algorithms: Makes the best choice at each step hoping for global optimum.
 
-Ex:
-- Dijkstra's Algorithm
-- Huffman Coding
-- Activity Selection
+        Ex:
+        - Dijkstra's Algorithm
+        - Huffman Coding
+        - Activity Selection
 
-Real world usecases:
-- Network routing
-- Data compression
-- Scheduling tasks
+        Real world usecases:
+        - Network routing
+        - Data compression
+        - Scheduling tasks
 
 7. Backtracking Algorithms: Try a solution and it it fails, go back and try another.
 
-Ex:
-- Suduko solver
-- N-Queen problem
-- Maze solving
+        Ex:
+        - Suduko solver
+        - N-Queen problem
+        - Maze solving
 
+        Real world usaecases:
+        - Puzzle solving
+        - constraint satisfaction problems
 
-> Sorting: To sort data in ascending or descending order
-  Ex: Bubble sort, Selection, Insertion sort
+8. Graph Algorithms: Used when data is represented as nodes and connections
 
-> Searching: To find specific value in a data
-  Ex: Linear / Binary Search
+        Ex:
+        Breadth First Search (BFS)
+        - Visits nodes level by level.
+        - uses Queue.
 
-> Graph: To work with data that can be represented as a graph
-  Ex: Depth for Search, Breadth for search
+        Depth First Search (DFS)
+        - Goes deep first
+        - Uses stack or Recursion.
 
-> Dynamic Programming: To solve a problem by breaking down into smaller sub-problems.
+        Dijkstra's Algorithm
+        - Finds shortest path
 
-> Divide and Conquer: To solve a problem by breaking down into smaller sub-problems, solve each sub-problem independently, and then combining the results.
-  Ex: Merge Sort or Quick Sort
+        Floyd-Warshall
+        - Finds shortest path among all nodes.
 
-> Recursion: To solve a problem by breaking down into smaller sub-problems that are similar in nature.
+        Real world usecases:
+        - Google Maps
+        - Social networks
+        - Flight routes.
 
-> Greedy Algorithms
-> Brute Force Algorithms
-> Randomized Algorithms
+9. Tree Algorithm: used on Hierarchiecal data
+
+        Ex:
+        Tree Traversal
+            - In Order
+            - Pre Order
+            - Post Order
+        - BST Search
+        - AVL Tree Operations
+
+        Real world usecases:
+        - File Systems
+        - Organization Hierarchy
+        - Database Indexing
+
+10. String Algorithm: Used to process text
+
+        Ex:
+        - KMP (Knuth-Morris-Pratt)
+        - Rabin-Karp
+        - Boyer-Moore
+
+        Real world usecases:
+        - Search Engines
+        - Text Editors
+        - DNA Sequence Matching
+
+11. Hashing Algorithms: Converts data into key-value pairs for fast lookups.
+
+        Ex:
+        - Hash Table
+        - Hash Map
+        - Dictionary
+
+        Real world usecases:
+        - Caching
+        - Database indexing
+        - Password Storage
+
 
